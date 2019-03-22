@@ -1,1 +1,2 @@
-Kecerdasan buatan
+# kecerdasanbuatan
+Modul Praktikum Kecerdasan Buatan
