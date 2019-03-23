@@ -48,3 +48,135 @@ Youtube memungkinkan agar mendapatkan video yang direkomendasikan, karena Machin
 \label{Contoh Ilustrasi}
 \end{figure}
 \end{enumerate}
+
+
+\section{Jesron Marudut Hatuan / 1164077}
+
+\subsection{Praktek}
+\begin{enumerate}
+\item Kali ini saya akan membuat data dummy dimana saya menggunakannya dengan format csv, dan data-datanya saya ambil dari sebuah web yang bernama UCI Machine Learning
+\par Repository dengan nama file Youtube03-LMFAO.csv
+\begin{figure}[ht]
+\centerline{\includegraphics[width=1\textwidth]{figures/c4P/1.PNG}}
+\caption{Data Dummy 500 Data}
+\label{Contoh Ilustrasi}
+\end{figure}
+
+\subitem Penjelasan pada gambar 1 yaitu mengimport library pandas dimana kita mengaliaskan praktek sebagai pandas. Pandas berguna untuk mengelola  dataframe = matrix = tabel kemudian untuk memanggil nama alias dan membaca format csvnya.
+\item Dari dataframe yang sudah ada sebelumnya kita akan membagi menjadi 2 yaitu 450 row pertama dan 50 row 
+\par Dapat dilihat pada gambar \ref{2}
+\begin{figure}[ht]
+\centerline{\includegraphics[width=1\textwidth]{figures/c4P/2.PNG}}
+\caption{Membagi 2 Dataframe}
+\label{Contoh Ilustrasi}
+\end{figure}
+
+\subitem Penjelasan pada gambar 2 yaitu baris pertama dimana d\_train untuk membagi data training sebanyak 450 row dan pada 
+\par baris kedua dimana d\_test untuk data sisa atau data yang baru sebanyak 50 row.
+\item Melakukan Vektorisasi dan Klasifikasi Data pada data LMFAO pada gambar 3  merupakan dataframe keseluruhan dari file csv yang sudah dimasukkan dengan jumlah 448 baris dan 5 kolom. Nospam merupakan dataframe yang isinya hanya data yang bukan termasuk spam dengan inisial angka 0. Sedangkan spam merupakan dataframe yang isinya hanya data spam dengan inisial angka 1.
+\begin{figure}[ht]
+\centerline{\includegraphics[width=1\textwidth]{figures/c4P/3.PNG}}
+\caption{Vektorisasi dan Klasifikasi Data}
+\label{Contoh Ilustrasi}
+\end{figure}
+
+\subitem  Pada gambar 3 merupakan hasil output content dimana terdapat 448 baris/data yang mempunyai 1602 kata-kata yang digunakan pada komentar yang ada di content tersebut.
+\begin{figure}[ht]
+	\centerline{\includegraphics[width=1\textwidth]{figures/c4P/4.PNG}}
+	\caption{Data Content}
+	\label{Contoh Ilustrasi}
+\end{figure}
+
+\subitem Pada gambar 4 maksud dari outputannya merupakan dataframe kata-kata tadi yang berjumlah 1602 kata orang 
+ yang komen pada data LMFAO.
+\begin{figure}[ht]
+	\centerline{\includegraphics[width=1\textwidth]{figures/c4P/5.PNG}}
+	\caption{DataFrame Kata-kata Pada Content}
+	\label{Contoh Ilustrasi}
+\end{figure}
+
+\item Mengklasifikasikan dari data vektorisasi dengan menggunakan klasifikasi svm(support vektorisasi machine) dapat dilihat pada  gambar 6.
+\begin{figure}[ht]
+	\centerline{\includegraphics[width=1\textwidth]{figures/c4P/6.PNG}}
+	\caption{Klasifikasi SVM Dari Data Vektorisasi}
+	\label{Contoh Ilustrasi}
+\end{figure}
+
+\subitem Jadi pada gambar 6 merupakan hasil dari memprediksi data score vektorisasi dengan svm menggunakan metode fit dimana digunakan untuk data training atau data pelatihannya.
+\item Mengklasifikasikan dari data vektorisasi dengan menggunakan klasifikasi Decision Tree dapat dilihat pada gambar 7.
+\begin{figure}[ht]
+	\centerline{\includegraphics[width=1\textwidth]{figures/c4P/7.PNG}}
+	\caption{Klasifikasi Decision Tree Dari Data Vektorisasi}
+	\label{Contoh Ilustrasi}
+\end{figure}
+
+\subitem Jadi pada gambar 7 merupakan hasil dari memprediksi data score vektorisasi dengan Decision Tree menggunakan metode fit dimana digunakan untuk data training atau data pelatihannya saja.
+\item Mengeplot confusion matrix menggunakan matplotlib dapat dilihat pada gambar 8.
+\begin{figure}[ht]
+	\centerline{\includegraphics[width=1\textwidth]{figures/c4P/8.PNG}}
+	\caption{Plot Confusion Matrix Menggunakan Matplotlib}
+	\label{Contoh Ilustrasi}
+\end{figure}
+
+\subitem Pada gambar 8 sebelumnya kita harus mengimport matplotlibnya terlebih dahulu setelah itu di sini saya 
+ menggunakan numpy untuk mengeluarkan hasil plot confusion matrix pada matplolibnya nantinya akan keluar normalisasi dari  confusion matrix berupa data baris dan kolom. 
+\item Menjalankan program cross validation pada data vektorisasi dapat dilihat pada gambar 9.
+\begin{figure}[ht]
+	\centerline{\includegraphics[width=1\textwidth]{figures/c4P/9.PNG}}
+	\caption{Program Cross Validation Pada Data Vektorisasi}
+	\label{Contoh Ilustrasi}
+\end{figure}
+
+\subitem Pada gambar 9 yang pertama yaitu memunculkan akurasi cross validation dari random forest pada data yang sudah divektorisasi, yang kedua yaitu memunculkan akurasi cross validation dari decision tree pada data yang sudah divektorisasi, dan yang ketiga yaitu memunculkan akurasi cross validation dari svm pada data yang sudah divektorisasi.
+\item Membuat program pengamatan komponen informasi pada data yang sudah divektorisasi dapat dilihat pada gambar 10
+\begin{figure}[ht]
+	\centerline{\includegraphics[width=1\textwidth]{figures/c4P/10.PNG}}
+	\caption{Program Pengamatan Komponen Informasi}
+	\label{Contoh Ilustrasi}
+\end{figure}
+
+\subitem Pada gambar 10  merupakan hasil outputan yang mana max features di sana terdapat 9 data dari 10 yang sudah kita masukkan ke dalam codingan sebelumnya dan penomoran estimatornya merupakan data per 5 dari angka 40 sedangkan rata-rata akurasinya kita tuliskan datanya mulai dari 0.9 sampai dengan 1. Titik-titik yang didalam tersebut merupakan data vektorisasi dari pengamatan komponen informasinya.
+\end{enumerate}
+
+\subsection{Penanganan Eror}
+\begin{enumerate}
+\item Pada gambar 11 merupakan ScreeShootan dari data yang eror.
+\begin{figure}[ht]
+	\centerline{\includegraphics[width=1\textwidth]{figures/c4P/11.PNG}}
+	\caption{Eror matplotlib.pyplot}
+	\label{c4_16}
+\end{figure}
+
+\item 
+\begin{verbatim}
+ matplotlib.pyplot
+Traceback (most recent call last):
+
+  File "<ipython-input-151-8094433808cc>", line 6, in <module>
+    ax = fig.gca(projection='3d')
+
+  File "C:\ProgramData\Anaconda3\lib\site-packages\matplotlib\figure.py", line 1817, in gca
+    return self.add_subplot(1, 1, 1, **kwargs)
+
+  File "C:\ProgramData\Anaconda3\lib\site-packages\matplotlib\figure.py", line 1221, in add_subplot
+    self, *args, **kwargs)
+
+  File "C:\ProgramData\Anaconda3\lib\site-packages\matplotlib\projections\_init_.py", line 91, in process_projection_requirements
+    projection_class = get_projection_class(projection)
+
+  File "C:\ProgramData\Anaconda3\lib\site-packages\matplotlib\projections\_init_.py", line 65, in get_projection_class
+    raise ValueError("Unknown projection '%s'" % projection)
+
+ValueError: Unknown projection '3d'
+
+<Figure size 432x288 with 0 Axes>
+\end{verbatim}
+
+\item Solusi eror tersebut dengan menambahkan  menambahkan codingan tersebut seperti berikut.
+\begin{verbatim}
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+fig = plt.figure()
+fig.clf()
+\end{verbatim}
+\end{enumerate}
