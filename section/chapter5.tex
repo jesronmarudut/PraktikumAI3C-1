@@ -260,4 +260,91 @@ model.save('ocean.d2v')
 # Delete temporary data
 model.delete_temporary_training_data(keep_inference=True)
 \end{verbatim}
+
+\item Penjelasan dengan kata dan praktek maksud dari infer code.
+\subitem Infer code yaitu membandingkan kata yang tercantum dengan code pada dokumen yang sudah di muat sebelumnya. Selain itu infer\_code juga menghitung code dari kata yang dicantumkan pada model yang telah kita buat. Dan seharusnya kata yang dicantumkan lebih panjang agar hasilnya bisa lebih baik.
+\begin{verbatim}
+model.infer_vector(extract_words("I will go home"))
+\end{verbatim}
+\subitem Pada source code tersebut menghasilkan keluaran seperti pada gambar \ref{c5_26}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/26.JPG}}
+\caption{Infer Code}
+\label{c5_26}
+\end{figure}
+\item Penjelasan dengan praktek dan kata maksud dari cosine similarity.
+\subitem Cosine similaritymerupakan proses membandingkan vektorisasi data diantara kedua kata yang di masukkan, apabila hasil presentase dari kedua kata tersebut lebih dari 50 persen kemungkinan kata tersebut terdapat dalam 1 file. Tapi jika kurang dari 50 persen kata tersebut tidak terdapat dalam 1 file. Hasil yang didapatkan pada code tersebut hanya 0.4 persen itu dikarenakan kata pertama dan kedua tidak memiliki kesamaan vektorisasi dan tidak terdapat pada salah satu dokumen.
+\begin{verbatim}
+from sklearn.metrics.pairwise import cosine_similarity
+cosine_similarity(
+[model.infer_vector(extract_words("she going to school, after wash hand"))],
+[model.infer_vector(extract_words("Services sucks."))])
+\end{verbatim}
+\subitem Pada source code tersebut menghasilkan keluaran seperti pada gambar \ref{c5_27}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/27.JPG}}
+\caption{Cosine Similarity}
+\label{c5_27}
+\end{figure}
+\item Penjelasan dengan praktek score dari cross validation masing-masing metode.
+\begin{verbatim}
+scores = cross_val_score(clf, sentvecs, sentiments, cv=5)
+np.mean(scores), np.std(scores)
+\end{verbatim}
+\subitem Pada source code tersebut melakukan perhitungan presentase dengan menggunakan cross validation yang mana mengecek data score menggunakan metode kneighborsClassifier untuk menghasilkan typedata float64 dimana terdapat 5 data dari score yang typedatanya float64 tersebut. menghasilkan keluaran seperti pada gambar \ref{c5_28}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/28.JPG}}
+\caption{Cross Validation Metode 1}
+\label{c5_28}
+\end{figure}
+\begin{verbatim}
+scores = cross_val_score(clfrf, sentvecs, sentiments, cv=5)
+np.mean(scores), np.std(scores)
+\end{verbatim}
+\subitem Pada source code tersebut melakukan perhitungan presentase dengan menggunakan cross validation yang mana mengecek data score menggunakan metode Random forest menghasilkan keluaran seperti pada gambar \ref{c5_29}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/29.JPG}}
+\caption{Cross Validation Metode 2}
+\label{c5_29}
+\end{figure}
+\begin{verbatim}
+from sklearn.pipeline import make_pipeline
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+pipeline = make_pipeline(CountVectorizer(), TfidfTransformer(), RandomForestClassifier())
+scores = cross_val_score(pipeline,sentences,sentiments, cv=5)
+np.mean(scores), np.std(scores)
+\end{verbatim}
+\subitem Pada source code tersebut melakukan skoring dari vektorisasi, tfidf, dan rf lalu dibuat perbandingan yang menghasilkan keluaran seperti pada gambar \ref{c5_30}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/30.JPG}}
+\caption{Cross Validation Metode 3}
+\label{c5_30}
+\end{figure}
+\end{enumerate}
+
+\subsection{Penanganan Eror}
+\begin{enumerate}
+\item Screenshot Error dapat dilihat pada gambar \ref{c5_31}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/error.JPG}}
+\caption{eror}
+\label{c5_31}
+\end{figure}
+\item Tuliskan kode eror dan jenis erornya.
+\subitem Kode eror
+\begin{verbatim}
+import gensim, logging
+\end{verbatim}
+\subitem Jenis eronya.
+\begin{verbatim}
+F:\anaconda\lib\site-packages\gensim\utils.py:1197: UserWarning: detected Windows; aliasing chunkize to chunkize_serial
+  warnings.warn("detected Windows; aliasing chunkize to chunkize_serial")
+\end{verbatim}
+\item Solusi Pemecahan Error Tersebut.
+\subitem yaitu dengan cara memberikan source code seperti dibawah ini:
+\begin{verbatim}
+import warnings
+warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim')
+\end{verbatim}
+\subitem Kenapa demikian itu karena gensim memberi tahu bahwa ia akan melakukan chunkize ke fungsi yang berbeda karena kita menggunakan os tertentu.
 \end{enumerate}
