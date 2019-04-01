@@ -54,7 +54,6 @@ brief of conclusion
 \end{figure}
 \end{enumerate}
 
-
 \subsection{Praktek Program}
 \begin{enumerate}
 \item Mencoba dataset google, dan penjelasan vektor dari kata love, faith, fall, sick, clear, shine, bag, car, wash, motor, cycle dan mencoba untuk melakukan perbandingan similirati dari masing-masing kata tersebut. Jelaskan arti dari outputan similaritas.
@@ -198,4 +197,67 @@ gmodel.similarity('wash','motor')
 \caption{Gensim TaggedDocument dan Doc2vec}
 \label{c5_22}
 \end{figure}
+
+\item Penjelasan kata dan praktek cara menambahkan data training dari file yang dimasukkan kepada variabel dalam rangka melatih model doc2vec.
+\subitem Untuk menambahkan data training dengan cara melakukan import library os, library os sebelumnya berfungsi untuk melakukan interaksi antara python dengan os laptop masing-masing, setelah itu kita buat variabel unsup sentences. Kemudian pilih direktori tempat data kita disimpan. Lalu menyortir data yang terdapat pada folder aclImdb dan membaca file tersebut dengan ektensi .txt.
+\begin{verbatim}
+import os
+unsup_sentences = []
+for dirname in ["train/pos","train/neg","train/unsup","test/pos","test/neg"]:
+for fname in sorted(os.listdir("aclImdb/"+dirname)):
+if fname[-4:] == '.txt':
+with open("aclImdb/"+dirname+"/"+fname,encoding='UTF-8') as f:
+sent = f.read()
+words = extract_words(sent)
+unsup_sentences.append(TaggedDocument(words,[dirname+"/"+fname]))
+\end{verbatim}
+\subitem Hasil dari code yang diatas ialah terdapatnya data training dengan jumlah 10000 data dari variabel unsup\_sentences hasil running dari folder aclImdb dapat dilihat pada gambar \ref{c5_23}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/23.JPG}}
+\caption{Aclimbdb}
+\label{c5_23}
+\end{figure}
+\begin{verbatim}
+for dirname in ["review_polarity/txt_sentoken/pos","review_polarity/txt_sentoken/neg"]:
+for fname in sorted(os.listdir(dirname)):
+if fname[-4:] == '.txt':
+with open(dirname+"/"+fname,encoding='UTF-8') as f:
+for i, sent in enumerate(f):
+words = extract_words(sent)
+unsup_sentences.append(TaggedDocument(words,["%s/%s-%d" % (dirname,fname,i)]))
+\end{verbatim}
+\subitem Untuk code berikutnya akan menambahkan data training pada variabel unsup\_sentences sekitar 64.720 data, seperti pada gambar \ref{c5_24}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/24.JPG}}
+\caption{Aclimbdb}
+\label{c5_24}
+\end{figure}
+\begin{verbatim}
+with open("stanfordSentimentTreebank/original_rt_snippets.txt",encoding='UTF-8') as f:
+for i, sent in enumerate(f):
+words = extract_words(sent)
+unsup_sentences.append(TaggedDocument(words,["rt-%d" % i]))
+\end{verbatim}
+\subitem Untuk code berikutnya akan menambahkan data training pada variabel unsup\_sentences sekitar 10.605 data, seperti pada gambar \ref{c5_25}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/25.JPG}}
+\caption{Aclimbdb}
+\label{c5_25}
+\end{figure}
+\item Penjelasan kata dan praktek mengapa harus dilakukan pengocokan dan pembersihan data.
+\subitem Pengocokan data itu berguna untuk mengacak data supaya pada saat data di running bisa berjalan lebih baik dan hasil presentase akhirnya bisa lebih bagus. Sedangkan pembersihan data untuk memberikan ruang bagi ram komputer kita setelah melakukan running data sebanyak 3 juta lebih, agar lebih ringan saat proses selanjutnya. Hasil dari pengacakan data tidak ditampilkan pada spyder. Dan sebelumnya memori yang terpakai itu sekitar 87\% , setelah dikosongkan jadi 71\%. Untuk source codenya dapat dilihat sebagai berikut:
+\begin{verbatim}
+# Pengocokan data
+mute = PermuteSentences(unsup_sentences)
+# Pembersihan data
+model.delete_temporary_training_data(keep_inference=True)
+\end{verbatim}
+\item Penjelasan kata dan praktek kenapa model harus di save dan kenapa temporari training harus dihapus.
+\subitem Save data adalah proses menyimpan file hasil dari proses training data sebelumnya, ini dilakukan untuk memberikan keringanan pada RAM agar pada saat kita akan melakukan training lagi, model tersebut tinggal di muat tanpa harus melakukan traning dari awal dan bisa menghemat waktu. Sedangkan untuk delete temporary training data untuk menghapus data training yang sebelumnya sudah dilakukan dan disimpan, tujuannya memberikan keringanan pada RAM. Karena setelah melakukan proses training, RAM biasanya jadi berat untuk dijalankan bahkan komputer mejadi lemot. Untuk source codenya dapat dilihat sebagai berikut:
+\begin{verbatim}
+# Save data
+model.save('ocean.d2v')
+# Delete temporary data
+model.delete_temporary_training_data(keep_inference=True)
+\end{verbatim}
 \end{enumerate}
