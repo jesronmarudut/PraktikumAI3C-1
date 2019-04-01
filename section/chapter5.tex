@@ -54,16 +54,148 @@ brief of conclusion
 \end{figure}
 \end{enumerate}
 
+
 \subsection{Praktek Program}
-
-\section{Conclusion of Problems}
-Tell about solving the problem
-
-\section{Conclusion of Method}
-Tell about solving using method
-
-\section{Conclusion of Experiment}
-Tell about solving in the experiment
-
-\section{Conclusion of Result}
-tell about result for purpose of this research.
+\begin{enumerate}
+\item Mencoba dataset google, dan penjelasan vektor dari kata love, faith, fall, sick, clear, shine, bag, car, wash, motor, cycle dan mencoba untuk melakukan perbandingan similirati dari masing-masing kata tersebut. Jelaskan arti dari outputan similaritas.
+\subitem Output source code dibawah akan memunculkan data vektor untuk kata love. bahwa vektor memiliki array sebanyak 300 dimensi. Hasil pada source code tersebut dapat dilihat pada gambar \ref{c5_7}.
+\begin{verbatim}
+gmodel['love']
+\end{verbatim}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/7.JPG}}
+\caption{Love}
+\label{c5_7}
+\end{figure}
+\subitem Output source code dibawah akan memunculkan data vektor untuk kata faith. Bahwa vektor memiliki array sebanyak 300 dimensi. Hasil pada source code tersebut dapat dilihat pada gambar \ref{c5_8}.
+\begin{verbatim}
+gmodel['faith']
+\end{verbatim}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/8.JPG}}
+\caption{Faith}
+\label{c5_8}
+\end{figure}
+\subitem Output source code dibawah akan memunculkan data vektor untuk kata fall. Bahwa vektor memiliki array sebanyak 300 dimensi. Hasil pada source code tersebut dapat dilihat pada gambar \ref{c5_9}.
+\begin{verbatim}
+gmodel['fall']
+\end{verbatim}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/9.JPG}}
+\caption{Fall}
+\label{c5_9}
+\end{figure}
+\subitem Output source code dibawah akan memunculkan data vektor untuk kata sick. Bahwa vektor memiliki array sebanyak 300 dimensi. Hasil pada source code tersebut dapat dilihat pada gambar \ref{c5_10}.
+\begin{verbatim}
+gmodel['sick']
+\end{verbatim}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/10.JPG}}
+\caption{Sick}
+\label{c5_10}
+\end{figure}
+\subitem Output source code dibawah akan memunculkan data vektor untuk kata clear. Bahwa vektor memiliki array sebanyak 300 dimensi. Hasil pada source code tersebut dapat dilihat pada gambar \ref{c5_11}.
+\begin{verbatim}
+gmodel['clear']
+\end{verbatim}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/11.JPG}}
+\caption{Clear}
+\label{c5_11}
+\end{figure}
+\subitem Output source code dibawah akan memunculkan data vektor untuk kata shine. Bahwa vektor memiliki array sebanyak 300 dimensi. Hasil pada source code tersebut dapat dilihat pada gambar \ref{c5_12}.
+\begin{verbatim}
+gmodel['shine']
+\end{verbatim}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/12.JPG}}
+\caption{Shine}
+\label{c5_12}
+\end{figure}
+\subitem Output source code dibawah akan memunculkan data vektor untuk kata bag. Bahwa vektor memiliki array sebanyak 300 dimensi. Hasil pada source code tersebut dapat dilihat pada gambar \ref{c5_13}.
+\begin{verbatim}
+gmodel['bag']
+\end{verbatim}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/13.JPG}}
+\caption{Bag}
+\label{c5_13}
+\end{figure}
+\subitem Output source code dibawah akan memunculkan data vektor untuk kata car. Bahwa vektor memiliki array sebanyak 300 dimensi. Hasil pada source code tersebut dapat dilihat pada gambar \ref{c5_14}.
+\begin{verbatim}
+gmodel['car']
+\end{verbatim}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/14.JPG}}
+\caption{Car}
+\label{c5_14}
+\end{figure}
+\subitem Output source code dibawah akan memunculkan data vektor untuk kata wash. Bahwa vektor memiliki array sebanyak 300 dimensi. Hasil pada source code tersebut dapat dilihat pada gambar \ref{c5_15}.
+\begin{verbatim}
+gmodel['wash']
+\end{verbatim}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/15.JPG}}
+\caption{Wash}
+\label{c5_15}
+\end{figure}
+\subitem Output source code dibawah akan memunculkan data vektor untuk kata motor. Bahwa vektor memiliki array sebanyak 300 dimensi. Hasil pada source code tersebut dapat dilihat pada gambar \ref{c5_16}.
+\begin{verbatim}
+gmodel['motor']
+\end{verbatim}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/16.JPG}}
+\caption{Motor}
+\label{c5_16}
+\end{figure}
+\subitem Output source code dibawah akan memunculkan data vektor untuk kata cycle. Bahwa vektor memiliki array sebanyak 300 dimensi. Hasil pada source code tersebut dapat dilihat pada gambar \ref{c5_17}.
+\begin{verbatim}
+gmodel['cycle']
+\end{verbatim}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/17.JPG}}
+\caption{Cycle}
+\label{c5_17}
+\end{figure}
+\subitem Pada source code dibawah menunjukkan hasil score perbandingan kata apakah kata motor dan cycle memiliki ke samaan atau tidak.  Hasil pada source code tersebut dapat dilihat pada gambar \ref{c5_18}.
+\begin{verbatim}
+gmodel.similarity('motor','cycle')
+\end{verbatim}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/18.JPG}}
+\caption{Similariti Pada Kata Motor dan Cycle}
+\label{c5_18}
+\end{figure}
+\subitem Pada source code dibawah menunjukkan hasil score perbandingan kata apakah kata wash dan motor memiliki ke samaan atau tidak.  Hasil pada source code tersebut dapat dilihat pada gambar \ref{c5_19}.
+\begin{verbatim}
+gmodel.similarity('wash','motor')
+\end{verbatim}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/19.JPG}}
+\caption{Similariti Pada Kata Wash dan Motor}
+\label{c5_19}
+\end{figure}
+\subitem Untuk Motor dan Cycle hasilnya adalah 17\%
+\subitem Untuk Wash dan Motor hasilnya adalah 10\%
+\subitem Artinya Motor dan Cyle memang dalam kategori yang sama misalnya dalam kategori kata-kata yang disatukan/berpasangan. Mesin sudah mengetahui bahwa keduanya dapat dikategorikan sebagai sepasang kata.
+\item Penjelasan kata dan ilustrasi fungsi dari extract\_words dan PermuteSentences.
+\subitem Extract\_Words merupakan function untuk menambahkan, menghilangkan atau menghapuskan, hal hal yang tidak penting atau tidak perlu di dalam teks. Pada gambar \ref{c5_20} berikut ini menggunakan function extract\_words untuk menghapus komen dengan python style , mencari data yang diinginkan, dan memberikan spasi pada teks.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/20.JPG}}
+\caption{Extract\_Words}
+\label{c5_20}
+\end{figure}
+\subitem PermuteSentences berfungsi untuk melakukan pengacakan data supaya memperoleh data yang teratur. Ini merupakan class yang digunakan untuk melakukan pengocokan secara acak pada data yang ada. Digunakan cara ini agar tidak terjadi kelebihan memori pada saat dijalankan. Hasilnya dapat dilihat pada gambar \ref{c5_21}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/21.JPG}}
+\caption{Permute Sentences}
+\label{c5_21}
+\end{figure}
+\item Fungsi dari librari gensim TaggedDocument dan Doc2Vec disertai praktek pemakaiannya.
+\subitem Fungsi dari library gensim yaitu sebagai pemodelan topik tanpa pengawasan dan pemrosesan bahasa alami, atau bisa kita sebut dengan unsupervised.  tagged document itu sendiri untuk memasukan kata-kata pada setiap dokumennya yang akan di vektorisasi. Fungsi dari doc2vec itu sendiri ialah untuk membandingkan bobot data yang terdapat pada dokumen lainnya, apakah kata-kata didalamnya ada yang sama atau tidak. Ketika di running maka tidak terjadi apa-apa, seperti pada gambar \ref{c5_22}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c5p/22.JPG}}
+\caption{Gensim TaggedDocument dan Doc2vec}
+\label{c5_22}
+\end{figure}
+\end{enumerate}
