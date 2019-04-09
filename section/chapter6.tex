@@ -1,5 +1,3 @@
-\chapter{Discussion}
-Please tell more about conclusion and how to the next work of this study.
 
 \section{Jesron Marudut Hatuan/1164077}
 \subsection{Teori}
@@ -66,4 +64,118 @@ Please tell more about conclusion and how to the next work of this study.
 \caption{One-Hot Encoding}
 \label{c6t_8}
 \end{figure} 
+\end{enumerate}
+
+
+\subsection{Praktek Program}
+\begin{enumerate}
+\item Penjelasan dari data GTZAN Genre Collection dan data dari freesound dan Berupa kode program untuk meload data tersebut untuk digunakan pada MFCC.
+\subitem Isi dari data GTZAN Genre Collection itu isinya berupa data musik yang sudah di folderkan berdasarkan genre lagunya (dikelompokkan) dengan ekstensi .au yang akan kita lakukan proses MFCC. Sedangakan freesound hanya untuk 1 lagu saja dengan ekstensi .wav.
+\lstinputlisting[firstline=1, lastline=2]{src/Jazz.py}
+\begin{itemize}
+\item Code pada baris pertama yaitu Filename jazz merupakan sebuah variabel yang nantinya berisikan direktori dari file yang dituju, pada code ini digunakan file audio dari genre jazz.
+\item Code pada baris kedua yaitu membuat variabel X jazz dan sr jazz yang digunakan untuk meload file dari variabel filename jazz menggunakan librari Librosa dengan durasi 10, yang nantinya akan digunakan pada Mfcc.
+\end{itemize}
+\subitem Hasilnya dapat dilihat pada gambar \ref{c6t_9}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c6t/9.JPG}}
+\caption{GTZAN}
+\label{c6t_9}
+\end{figure} 
+\item Penjelasan perbaris kode program dengan kata-kata dan dilengkapi ilustrasi gambar fungsi dari display mfcc() .
+\lstinputlisting[firstline=42, lastline=42]{src/Genreidentifier.py}
+\subitem Pada kode tersebut menjelaskan display\_mfcc untuk menampilkan vektorisasi dari sebuah suara yang akan menampilkan Plot dan Bar dari inputan code dan file suara hiphop.00028.au. Hasilnya dapat dilihat pada gambar \ref{c6t_10}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c6t/10.png}}
+\caption{Display MFCC}
+\label{c6t_10}
+\end{figure} 
+\item Penjelasan perbaris kode program dengan kata-kata dan dilengkapi ilustrasi gambar fungsi dari extract features song(). Jelaskan juga mengapa yang diambil 25.000 baris pertama?
+\lstinputlisting[firstline=42, lastline=42]{src/Genreidentifier.py}
+\begin{itemize}
+\item Pada kode baris pertama berfungsi untuk memuat inputan. 
+\item Pada kode baris kedua itu akan memuat data inputan dengan menggunakan librosa.
+\item Kemudian pada parameter inputan yaitu y untuk membuat sebuah fitur pada mfcc.
+\item Selanjutnya me-return menjadi array dan akan mengambil 25000 data saja dari hasil vektorisasi dalam 1 lagu yang sudah di display\_mfcc.  
+\item Mengapa yang dimabil 25.000 baris pertama karena nemuat nilai-nilai MFCC untuk lagu, tetapi karena nilai-nilai ini mungkin antara negatif 250 hingga positif 150, mereka tidak baik untuk jaringan saraf.
+\end{itemize}
+\item Penjelasan perbaris kode program dengan kata-kata dan dilengkapi ilustrasi gambar fungsi dari generate features and labels().
+\lstinputlisting[firstline=58, lastline=75]{src/Genreidentifier.py}
+\subitem Pada kode diatas berfungsi melakukan fungsi yang sebelumnya kita telah jalankan. Lalu pada bagian genres itu disesuaikan dengan nama folder dataset. Untuk baris selanjutnya itu akan melakukan looping dari folder genres dengan ektensi .au. Lalu akan memanggil fungsi ekstrak lagu. Pada setiap file yang terdapat pada folder itu akan di ekstrak menjadi vektor dan akan dimasukan kedalam fitur. Dan fungsi append itu menumpuk file-file yang telah di vektorisasi.
+\item Penjelasan dengan kata dan praktek kenapa penggunaan fungsi generate features and labels() sangat lama ketika meload dataset genre.
+\lstinputlisting[firstline=79, lastline=79]{src/Genreidentifier.py}
+\subitem Pada kode diatas menjelaskan dikarenakan terdapat 10 folder dengan genre berbeda, dan didalamnya terdapat 100 audio maka itu akan lama untuk meload dataset genre. Dari setiap folder itu akan dilakukan features dan perubahan label dengan ekstrasi data mengunakan mfcc. Karena banyaknya jumlah file maka proses loadnya pun lama. Hasil dapat dilihat pada gambar \ref{c6t_11}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c6t/11.JPG}}
+\caption{Generate Features and Labels}
+\label{c6t_11}
+\end{figure}
+\item Penjelasan kenapa harus dilakukan pemisahan data training dan data set sebesar 80 persen?
+\lstinputlisting[firstline=84, lastline=84]{src/Genreidentifier.py}
+\subitem Pada kode diatas berfungsi untuk memisahkan data training dan dataset sebesar 80\% digunakan untuk memudahkan dalam melakukan pengacakan atau pengocokan nantinya. Dimana 80\% merupakan data training dan sisanya 20\% merupakan datatestnya. data training perlu lebih banyak agar saat dilakukan pengocokan tidak teracak dalam urutan yang berbeda. Hasilnya dapat dilihat pada gambar \ref{c6t_12}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c6t/12.JPG}}
+\caption{Training Data Sebesar 80\%}
+\label{c6t_12}
+\end{figure}
+\item Mempraktekkan dan jelaskan masing-masing parameter dari fungsi Sequential().
+\lstinputlisting[firstline=106, lastline=111]{src/Genreidentifier.py}
+\subitem Pada kode diatas dijelaskan bahwa:
+\begin{itemize}
+\item Layer pertama dense dari 100 neuron untuk inputan
+\item Activationnya menggunakan fungsi relu yaitu jika ada inputan dengan nilai maksimum maka inputan itu yang akan terpilih.
+\item Dense 10 mengkategorikan 10 neuron untuk jenis genrenya untuk output nya.
+\item Untuk dense diatas aktivasinya menggunakan fungsi Softmax
+\end{itemize}
+\item Praktekkan dan jelaskan masing-masing parameter dari fungsi compile() dan tunjukkan keluarannya dengan fungsi summary.
+\lstinputlisting[firstline=113, lastline=116]{src/Genreidentifier.py}
+\subitem Pada kode diatas dijelaskan bahwa:
+\begin{itemize}
+\item Menggunakan algortima adam sebagai optimizer. Adam yaitu algoritme pengoptimalan yang dapat digunakan sebagai ganti dari prosedur penurunan gradien stokastik klasik untuk memperbarui bobot jaringan yang berulang berdasarkan data training.
+\item Loss nya menggunakan categorical\_crossentropy untuk fungsi optimasi skor
+\end{itemize}
+\subitem Hasilnya dapat dilihat pada gambar \ref{c6t_13}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c6t/13.JPG}}
+\caption{Fungsi Compile}
+\label{c6t_13}
+\end{figure}
+\item Penjelasan dan jelaskan masing-masing parameter dari fungsi fit().
+\lstinputlisting[firstline=118, lastline=119]{src/Genreidentifier.py}
+\subitem Pada kode tersebut dapat dilihat bahwa pada model fit digunakan untuk melatih mesin dengan data training input dan training label. Epochs ini merupakan iterasi atau pengulangan berapa kali data tersebut akan dilakukan. Batch\_size ini adalah jumlah file yang akan dilakukan pelatihan pada setiap 1 kali pengulangan. Sedangkan validation\_split itu untuk menentukan presentase dari cross validation atau k-fold sebanyak 20\% dari masing-masing data pengulangan. Hasilnya dapat dilihat pada gambar \ref{c6t_14}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c6t/14.JPG}}
+\caption{Fungsi Fit}
+\label{c6t_14}
+\end{figure}
+\item Mempraktekkan dan jelaskan masing-masing parameter dari fungsi evaluate().
+\lstinputlisting[firstline=121, lastline=121]{src/Genreidentifier.py}
+\subitem Pada kode diatas maka dapat dilihat bahwa dengan menggunakan test input dan test label dilakukan evaluasi atau proses menemukan model terbaik yang mewakili data dan seberapa baik model yang dipilih akan dijalankan kedepannya. Hasilnya dapat dilihat pada gambar \ref{c6t_15}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c6t/15.JPG}}
+\caption{Fungsi Evaluate}
+\label{c6t_15}
+\end{figure}
+\item Praktekkan dan jelaskan masing-masing parameter dari fungsi predict(). 
+\lstinputlisting[firstline=127, lastline=127]{src/Genreidentifier.py}
+\subitem Pada kode diatas akan melakukan testing satu data lagu. file yang di jalankan tersebut termasuk ke dalam genre apa, hasilnya bisa dilihat pada gambar tersebut presentase yang paling besar yakni genre hiphop. Maka lagu tersebut termasuk ke dalam genre hiphop dengan perbandingan presentase hasil prediksi. Hasilnya dapat dilihat pada gambar \ref{c6t_16}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c6t/16.JPG}}
+\caption{Fungsi Predict}
+\label{c6t_16}
+\end{figure}
+\end{enumerate}
+
+\subsection{Penanganan Eror}
+\begin{enumerate}
+\item ScreenShoot Error dapat dilihat pada gambar \ref{c6t_17}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c6t/eror.JPG}}
+\caption{Eror}
+\label{c6t_17}
+\end{figure}
+\item Tuliskan kode eror dan jenis errornya.
+\lstinputlisting[firstline=131, lastline=131]{src/Genreidentifier.py}
+\item Solusi pemecahan masalah error tersebut.
+\lstinputlisting[firstline=133, lastline=139]{src/Genreidentifier.py}
 \end{enumerate}
