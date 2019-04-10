@@ -5,15 +5,70 @@
 \item Penjelasan mengapa file teks harus di lakukan tokenizer.
 \subitem Tokenizer merupakan cara untuk membuat vektor dari teks. Dan mengapa harus dilakukan Tokenizer pada file teks? itu karena dengan memfungsikan Tokenizer, teks dapat divektorkan. Sehingga teks yang telah telah divektorkan tersebut dapat terbaca pada Machine Learning. Proses Tokenizer itu hanya memenggal kata-kata yang ada didalam suatu frasa atau kalimat yang terdapat didalam suatu text dataset. Ilustrasi gambar dapat dilihat pada gambar \ref{c7t_1}.
 \begin{figure}[!htbp]
-	\centerline{\includegraphics[width=1\textwidth]{figures/c7t/1.JPG}}
-	\caption{Tokenizer}
-	\label{c7t_1}
+\centerline{\includegraphics[width=1\textwidth]{figures/c7t/1.JPG}}
+\caption{Tokenizer}
+\label{c7t_1}
 \end{figure}
+\item Penjelasan konsep dasar K Fold Cross Validation pada dataset komentar Youtube pada kode listing \ref{lst:7.0}.
+\begin{lstlisting}[caption=K Fold Cross Validation,label={lst:7.0}]
+kfold = StratifiedKFold(n_splits=5)
+splits = kfold.split(d, d['CLASS'])
+\end{lstlisting}
+\subitem StartifiedKFold berisikan presentasi sampel untuk setiap kelas, dimana dalam ilustrasi ini sampel dibagi menjadi 5 dalam setiap class nya. Kemudian sampel tadi akan dimasukan kedalam class dari dataset youtube tadi. Contoh dapat dilihat pada gambar \ref{c7t_2}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c7t/2.JPG}}
+\caption{StartifiedKFold}
+\label{c7t_2}
+\end{figure}
+\item Penjelasan maksud kode program for train, test in splits.
+\subitem Maksudnya adalah untuk menguji apakah setiap data pada dataset sudah di split dan tidak terjadi penumpukan. Yang dimana maksudnya di setiap class tidak akan muncul id yang sama. Ilustrasinya misalkan kita memiliki 4 baju dengan model yang berbeda. Kemudian kita bagikan kedua anak, tentunya setiap anak yang menerima baju tidak memiliki baju yang sama modelnya.
+\item Penjeasan maksud dari kode program \emph{train\_content = d['CONTENT'].iloc[train\_idx]} dan \emph{test\_content = d['CONTENT'].iloc[test\_idx]}.
+\subitem Maksudnya yaitu mengambil data pada kolom atau index CONTENT yang merupakan bagian dari train\_idx dan test\_idx. Ilustrasinya, ketika data telah diubah menjadi train dan test maka kita dapat memilihnya untuk ditampilkan pada kolom yang diinginkan.
+\item Penjelasan maksud dari fungsi \emph{tokenizer = Tokenizer(num\_words=2000)} dan \emph{tokenizer.fit\_on\_texts(train\_content)}.
+\subitem Dimana variabel tokenizer akan melakukan vektorisasi kata menggunakan fungsi Tokenizer yang dimana jumlah kata yang ingin diubah kedalam bentuk token adalah 2000 kata. Dan untuk \emph{tokenizer.fit\_on\_texts(train\_content)} maksudnya kita akan melakukan fit tokenizer hanya untuk dat trainnya saja tidak dengan data test nya untuk kolom CONTENT. Ilustrasinya, Jadi, jika Anda memberikannya sesuatu seperti, "Kucing itu duduk di atas tikar." Ini akan membuat kamus s.t. word\_index ["the"] = 0; word\_index ["cat"] = 1 itu adalah kata -> kamus indeks sehingga setiap kata mendapat nilai integer yang unik.
+\item Penjelasan maksud dari fungsi \emph{d\_train\_inputs = tokenizer.texts\_to\_matrix(train\_content, mode='tfidf')} dan \emph{d\_test\_inputs = tokenizer.texts\_to\_matrix(test\_content, mode='tfidf')}.
+\subitem Maksudnya yaitu untuk variabel d\_train\_inputs akan melakukan tokenizer dari bentuk teks ke matrix dari data train\_content dengan mode matriksnya yaitu tfidf begitu juga dengan variabel d\_test\_inputs untuk data test. Contoh dapat dilihat pada gambar \ref{c7t_3}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c7t/3.JPG}}
+\caption{Fungsi Tokenizer}
+\label{c7t_3}
+\end{figure}
+\item Penjelasan maksud dari fungsi \emph{d\_train\_inputs = d\_train\_inputs/np.amax(np.absolute(d\_train\_inputs))} dan \emph{d\_test\_inputs = d\_test\_inputs/np.amax(np.absolute(d\_test\_inputs))}.
+\subitem Fungsi tersebut akan membagi matrix tfidf tadi dengan amax yaitu mengembalikan maksimum array atau maksimum sepanjang sumbu. Yang hasilnya akan dimasukan kedalam variabel d\_train\_inputs untuk data train dan d\_test\_inputs untuk data test dengan nominal absolut atau tanpa ada bilangan negatif dan koma. Contoh dapat dilihat pada gambar\ref{c7t_4}.
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c7t/4.JPG}}
+\caption{Matrix TFID}
+\label{c7t_4}
+\end{figure}
+\item Penjelasan maksud fungsi dari d train outputs = np utils.to categorical(d['CLASS'].iloc[train dan d test outputs = np utils.to categorical(d['CLASS'].iloc[test idx]) dalam kode program.
+\subitem maksud dari fungsi tersebut yaitu untuk merubah nilai vektor yang ada pada atribut class menjadi bentuk matrix dengan pengurutan berdasarkan data index training dan testing. Contoh dapat dilihat pada gambar \ref{c7t_5}
+\begin{figure}[!htbp]
+\centerline{\includegraphics[width=1\textwidth]{figures/c7t/5.JPG}}
+\caption{Matrix Training dan Testing}
+\label{c7t_5}
+\end{figure}
+\item Penjelasan maksud dari fungsi di listing \ref{lst:7.1}. Gambarkan ilustrasi Neural Network nya dari model kode tersebut.
+\begin{lstlisting}[caption=Neural Network,label={lst:7.1}]
+model=Sequential()
+model.add(Dense(512,input_shape=(2000,)))
+model.add(Activation('relu'))
+model.add(Dropout(0.5))
+model.add(Dense(2))
+model.add(Act ivation('softmax'))
+\end{lstlisting}
+\item Penjelasan maksud dari fungsi di listing \ref{lst:7.2} dengan parameter tersebut.
+\begin{lstlisting}[caption=Model Compile Metric,label={lst:7.2}]
+model . compile(loss='categorical_crossentropy',optimizer='adamax',
+metrics=[ 'accuracy '])
+\end{lstlisting}
 \item Penjelasan mengenai Deep Learning.
 \subitem Deep Learning adalah salah satu cabang dari Machine Learning atau dapat dikatakan bagian keluarga yang lebih luas dari method machine learning berdasarkan pada representasi data pembelajaran dan memiliki konsep serupa, tapi dilakukan dengan metode yang lebih cerdas. Deep Learning menggunakan Deep Neural Network dalam melakukan suatu penyelesaian suatu masalah yang terjadi pada Machine Learning.
+\item Jelaskan apa itu Deep Neural dan bedanya dengan Deep Learning.
+\begin{itemize}
 \item Penjelasan apa itu Deep Neural dan bedanya dengan Deep Learning.
 \begin{itemize}
 \item Deep Neural Network atau DNN adalah sebuah algoritma yang berbasis neural network yang bisa digunakan untuk mengambil sebuah keputusan.
 \item Dan yang membedakan Deep Learning dengan Deep Neural Network (DNN) adalah DNN merupakan algoritma yang digunakan pada Deep Learning, sedangkan Deep Learning merupakan model yang menggunakan algoritma DNN.
 \end{itemize}
+\item Penjelasan dengan ilustrasi gambar buatan sendiri(langkah per langkah) bagaimana perhitungan algoritma konvolusi dengan ukuran stride (NPM mod3+1) x (NPM mod3+1) yang terdapat max pooling.
 \end{enumerate}
